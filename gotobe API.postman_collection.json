@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "771e2853-09c0-4752-b25c-23afc9acf10d",
+		"name": "gotobe API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbmtla0Bnb29nbGUuY29tIiwidXNlcklkIjoiNjAxZDhkMGJmZDRkYWEzZTBjMmViZDg3IiwiaWF0IjoxNjEyNTQ5NDIxLCJleHAiOjE2MTI1NTMwMjF9.5Z6nC7eJBN9zEz4h_I_ZpKAiSO1Gq8_oVQpAhqkzKi0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"tonkek@google.com\",\r\n    \"password\": \"tonkek123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "create_category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbmtla0Bnb29nbGUuY29tIiwidXNlcklkIjoxNiwiaWF0IjoxNjEyNTQ5NTgyLCJleHAiOjE2MTI1NTMxODJ9.rCMYpbAv2BxfZucQ2TEQEHswCbVPp7pl5AiIxdHJTSA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbmtla0Bnb29nbGUuY29tIiwidXNlcklkIjoxNiwiaWF0IjoxNjEyNTQ5MDI5LCJleHAiOjE2MTI1NTI2Mjl9.UFzzofOZzqed4UjfHXDtD2735UE-PRsqnn5L1VGgVyE",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Beach\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/categories/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
