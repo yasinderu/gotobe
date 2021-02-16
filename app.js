@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+var cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+
+global.__basedir = __dirname;
 
 const userRoutes = require('./app/routes/user');
 const categoryRoutes = require('./app/routes/category');
@@ -11,9 +14,10 @@ app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.header(
 		'Access-Control-Allow-Headers',
 		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
