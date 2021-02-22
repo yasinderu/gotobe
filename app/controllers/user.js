@@ -3,6 +3,10 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
+const setExpireTime = hour => {
+	return hour * 60 * 60;
+};
+
 exports.user_signup = (req, res, next) => {
 	if (!req.body) {
 		return res.status(400).json({
@@ -57,6 +61,24 @@ exports.user_getAll = (req, res, next) => {
 	});
 };
 
+exports.user_findById = (req, res, next) => {
+	User.findById(req.params.userId, (err, data) => {
+		if (err) {
+			if (err.kind === 'not_found') {
+				return res.status(404).json({
+					message: 'User Not Found',
+				});
+			}
+			return res.status(500).json({
+				message: err,
+			});
+		}
+		res.status(200).json({
+			value: data,
+		});
+	});
+};
+
 exports.user_login = (req, res, next) => {
 	if (!req.body) {
 		return res.status(400).json({
@@ -101,7 +123,7 @@ exports.user_login = (req, res, next) => {
 						username: user.username,
 						email: user.email,
 					},
-					token: token,
+					token: { value: token, expiresIn: setExpireTime(2) },
 				});
 			}
 			res.status(401).json({

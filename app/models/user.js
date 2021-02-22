@@ -48,19 +48,22 @@ User.findEmail = (email, result) => {
 };
 
 User.findById = (userId, result) => {
-	sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
-		if (err) {
-			console.log('error', err);
-			result(err, null);
-			return;
+	sql.query(
+		`SELECT name, username, id AS userId, email FROM users WHERE id = ${userId}`,
+		(err, res) => {
+			if (err) {
+				console.log('error', err);
+				result(err, null);
+				return;
+			}
+			if (res.length) {
+				console.log('user found : ', res[0]);
+				result(null, res[0]);
+				return;
+			}
+			return result({ kind: 'not_found' }, null);
 		}
-		if (res.length) {
-			console.log('user found : ', res[0]);
-			result(null, res[0]);
-			return;
-		}
-		return result({ kind: 'not_found' }, null);
-	});
+	);
 };
 
 User.updateById = (id, user, result) => {
