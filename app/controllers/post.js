@@ -59,8 +59,12 @@ exports.post_findByUserId = (req, res, next) => {
 				message: err,
 			});
 		}
+		const postData = [...data];
+		for (let key in postData) {
+			postData[key].img = { name: postData[key].img, url: imgUrl + postData[key].img };
+		}
 		res.status(200).json({
-			value: data,
+			value: postData,
 		});
 	});
 };
@@ -72,8 +76,12 @@ exports.post_findByCategoryAndUserId = (req, res, next) => {
 				message: err,
 			});
 		}
+		const postData = [...data];
+		for (let key in postData) {
+			postData[key].img = { name: postData[key].img, url: imgUrl + postData[key].img };
+		}
 		res.status(200).json({
-			value: data,
+			value: postData,
 		});
 	});
 };

@@ -38,15 +38,18 @@ Post.getAll = result => {
 };
 
 Post.findByUserId = (userId, result) => {
-	sql.query(`SELECT * FROM posts WHERE user_id = ${userId}`, (err, res) => {
-		if (err) {
-			console.log('error', err);
-			result(err, null);
-			return;
+	sql.query(
+		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE user_id = ${userId}`,
+		(err, res) => {
+			if (err) {
+				console.log('error', err);
+				result(err, null);
+				return;
+			}
+			console.log('posts : ', res);
+			return result(null, res);
 		}
-		console.log('posts : ', res);
-		return result(null, res);
-	});
+	);
 };
 
 Post.findByCategoryId = (categoryId, result) => {
