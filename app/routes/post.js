@@ -33,7 +33,7 @@ router.get(
 	PostController.post_findByCategoryAndUserId
 );
 
-router.get('/getByCategory', checkAuth, PostController.post_findByCategoryId);
+router.get('/getByCategory', PostController.post_findByCategoryId);
 
 router.get('/', PostController.post_getAll);
 

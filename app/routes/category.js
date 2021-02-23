@@ -3,9 +3,9 @@ const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
 const CategoryController = require('../controllers/category');
 
-router.get('/', checkAuth, CategoryController.category_getAll);
+router.get('/', CategoryController.category_getAll);
 
-router.post('/insertPost', checkAuth, CategoryController.category_create);
+router.post('/insertCategory', checkAuth, CategoryController.category_create);
 
 router.get('/:categoryId', checkAuth, CategoryController.category_findById);
 
