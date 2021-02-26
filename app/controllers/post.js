@@ -70,7 +70,7 @@ exports.post_findByUserId = (req, res, next) => {
 };
 
 exports.post_findByCategoryAndUserId = (req, res, next) => {
-	Post.findByCategoryAndUserId(req.query.categoryId, req, query.userId, (err, data) => {
+	Post.findByCategoryAndUserId(req.query.categoryId, req.query.userId, (err, data) => {
 		if (err) {
 			return res.status(500).json({
 				message: err,

@@ -123,7 +123,7 @@ exports.user_login = (req, res, next) => {
 						username: user.username,
 						email: user.email,
 					},
-					token: { value: token, expiresIn: setExpireTime(2) },
+					token: { value: 'Bearer ' + token, expiresIn: setExpireTime(2) },
 				});
 			}
 			res.status(401).json({

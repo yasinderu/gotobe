@@ -68,7 +68,7 @@ Post.findByCategoryId = (categoryId, result) => {
 
 Post.findByCategoryAndUserId = (categoryId, userId, result) => {
 	sql.query(
-		`SELECT * FROM posts WHERE category_id = ${categoryId} && userId = ${userId}`,
+		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE category_id = ${categoryId} && user_id = ${userId}`,
 		(err, res) => {
 			if (err) {
 				console.log('error', err);
