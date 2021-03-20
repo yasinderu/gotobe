@@ -81,19 +81,22 @@ Post.findByCategoryAndUserId = (categoryId, userId, result) => {
 };
 
 Post.findById = (id, result) => {
-	sql.query(`SELECT * FROM posts WHERE id = ${id}`, (err, res) => {
-		if (err) {
-			console.log('error', err);
-			result(null, err);
-			return;
+	sql.query(
+		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE posts.id = ${id}`,
+		(err, res) => {
+			if (err) {
+				console.log('error', err);
+				result(null, err);
+				return;
+			}
+			if (res.length) {
+				console.log('post : ', res[0]);
+				result(null, res[0]);
+				return;
+			}
+			return result({ kind: 'not_found' }, null);
 		}
-		if (res.length) {
-			console.log('post : ', res[0]);
-			result(null, res[0]);
-			return;
-		}
-		return result({ kind: 'not_found' }, null);
-	});
+	);
 };
 
 Post.updateById = (id, post, result) => {
