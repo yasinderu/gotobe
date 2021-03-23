@@ -25,7 +25,7 @@ Post.create = (newPost, result) => {
 
 Post.getAll = result => {
 	sql.query(
-		'SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id',
+		'SELECT posts.id AS postId, posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id',
 		(err, res) => {
 			if (err) {
 				console.log('error', err);
@@ -39,7 +39,7 @@ Post.getAll = result => {
 
 Post.findByUserId = (userId, result) => {
 	sql.query(
-		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE user_id = ${userId}`,
+		`SELECT posts.id AS postId, posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE user_id = ${userId}`,
 		(err, res) => {
 			if (err) {
 				console.log('error', err);
@@ -54,7 +54,7 @@ Post.findByUserId = (userId, result) => {
 
 Post.findByCategoryId = (categoryId, result) => {
 	sql.query(
-		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE category_id = ${categoryId}`,
+		`SELECT posts.id AS postId, posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE category_id = ${categoryId}`,
 		(err, res) => {
 			if (err) {
 				console.log('error', err);
@@ -68,7 +68,7 @@ Post.findByCategoryId = (categoryId, result) => {
 
 Post.findByCategoryAndUserId = (categoryId, userId, result) => {
 	sql.query(
-		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE category_id = ${categoryId} && user_id = ${userId}`,
+		`SELECT posts.id AS postId, posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE category_id = ${categoryId} && user_id = ${userId}`,
 		(err, res) => {
 			if (err) {
 				console.log('error', err);
@@ -82,7 +82,7 @@ Post.findByCategoryAndUserId = (categoryId, userId, result) => {
 
 Post.findById = (id, result) => {
 	sql.query(
-		`SELECT posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE posts.id = ${id}`,
+		`SELECT posts.id AS postId, posts.title AS postTitle, posts.description, posts.img, posts.author, categories.title AS categoryTitle FROM posts INNER JOIN categories ON posts.category_id = categories.id WHERE posts.id = ${id}`,
 		(err, res) => {
 			if (err) {
 				console.log('error', err);

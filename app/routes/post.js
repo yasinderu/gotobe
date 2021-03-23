@@ -25,7 +25,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 router.get('/getByUser', checkAuth, PostController.post_findByUserId);
 
-router.get('/getById/:postId', checkAuth, PostController.post_findById);
+router.get('/getById/:postId', PostController.post_findById);
 
 router.get(
 	'/getByCategoryAndUserId',
